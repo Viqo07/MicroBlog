@@ -1,0 +1,31 @@
+@page "{id:int}"
+@model MicroBlog.Pages.DetailsModel
+
+<h1>@Model.Post?.Title</h1>
+
+@if (Model.Post != null)
+{
+    <p>
+        Posted @Model.Post.CreatedUtc.ToLocalTime().ToString("g")
+    </p>
+
+    <div>
+        @Model.Post.Body
+    </div>
+
+    <p>
+        <a asp-page="/Edit" asp-route-id="@Model.Post.Id">Edit</a>
+        |
+        <a asp-page="/Delete" asp-route-id="@Model.Post.Id">Delete</a>
+        |
+        <a asp-page="/Index">Back to Posts</a>
+    </p>
+}
+else
+{
+    <p>Post not found.</p>
+
+    <p>
+        <a asp-page="/Index">Back to Posts</a>
+    </p>
+}
