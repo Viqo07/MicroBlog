@@ -1,0 +1,40 @@
+@model MicroBlog.Models.Post
+
+<article class="post-card">
+    <h2>@Model.Title</h2>
+
+    <p class="post-date">
+        Posted @Model.CreatedUtc.ToLocalTime().ToString("g")
+    </p>
+
+    <p>
+        @if (Model.Body.Length > 150)
+        {
+            @Model.Body.Substring(0, 150)
+            <text>...</text>
+        }
+        else
+        {
+            @Model.Body
+        }
+    </p>
+
+    <p>
+        <a asp-page="/Details" asp-route-id="@Model.Id">
+            Read More
+        </a>
+
+        |
+
+        <a asp-page="/Edit" asp-route-id="@Model.Id">
+            Edit
+        </a>
+
+        |
+
+        <a asp-page="/Delete" asp-route-id="@Model.Id">
+            Delete
+        </a>
+    </p>
+
+</article>
